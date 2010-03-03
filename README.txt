@@ -14,7 +14,7 @@ A basic buildout configuration using this recipe looks like this::
 
     [buildout]
 
-    develop = .
+    develop =
     eggs =
 
     parts =
