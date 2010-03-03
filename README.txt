@@ -45,8 +45,8 @@ this will run a Jetty server on port 8070. The hudson instance is accessible in
 a browser at ``http://127.0.0.1:8070/hudson/``.
 
 Hudson will write all its log files into ``var/hudson/log``. All its
-configuration included jobs and past runs will go into ``var/hudson/data``. The
-directory name in ``var`` will have the name of the recipe section.
+configuration including jobs and past runs will go into ``var/hudson/data``.
+The directory name in ``var`` will have the name of the recipe section.
 
 
 Options
