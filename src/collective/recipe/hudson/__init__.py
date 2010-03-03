@@ -18,14 +18,9 @@ class Recipe(object):
 
         options['host'] = options.get('host', '127.0.0.1').strip()
         options['port'] = options.get('port', '8070').strip()
-        options['section-name'] = options.get('section-name', 'hudson').strip()
 
         options['jetty-location'] = options['jetty-location'].strip()
         options['hudson-location'] = options['hudson-location'].strip()
-
-        options['jetty-destination'] = options.get(
-            'jetty-destination',
-            os.path.join(self.part_dir, 'etc'))
 
         options['vardir'] = options.get(
             'vardir',
@@ -98,7 +93,7 @@ class Recipe(object):
             logdir=logdir,
             serverhost=self.options['host'],
             serverport=self.options['port'],
-            destination=self.options['jetty-destination'])
+            destination=os.path.join(self.part_dir, 'etc'))
 
         self.create_bin_scripts(
             source='%s/templates/hudson.tmpl' % TEMPLATE_DIR,
