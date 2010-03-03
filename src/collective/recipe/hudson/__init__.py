@@ -93,11 +93,6 @@ class Recipe(object):
         if os.path.exists(test_war):
             os.remove(test_war)
 
-        for xml in ('test.xml', 'demo.xml', 'javadoc.xml'):
-            xml_file = os.path.join(self.part_dir, 'contexts', xml)
-            if os.path.exists(xml_file):
-                os.remove(xml_file)
-
         self.generate_jetty(
             source='%s/templates/jetty.xml.tmpl' % TEMPLATE_DIR,
             logdir=logdir,
