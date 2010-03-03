@@ -64,6 +64,7 @@ class Recipe(object):
         vardir = self.options['vardir']
         datadir = os.path.join(vardir, 'data')
         logdir = os.path.join(vardir, 'log')
+        webapps = os.path.join(self.part_dir, 'webapps')
 
         for path in datadir, logdir:
             if not os.path.exists(path):
@@ -76,16 +77,15 @@ class Recipe(object):
             # Copy the jetty files
             shutil.copytree(self.options['jetty-location'], self.part_dir)
 
-            webapps = os.path.join(self.part_dir, 'webapps')
-
             # Clean up default garbage
             war = os.path.join(webapps, 'test.war')
             if os.path.exists(war):
                 os.remove(war)
 
-            # Copy the hudson file
-            war = os.path.join(self.options['hudson-location'], 'hudson.war')
-            shutil.copyfile(war, os.path.join(webapps, 'hudson.war'))
+        # Copy the hudson file
+        source = os.path.join(self.options['hudson-location'], 'hudson.war')
+        destination = os.path.join(webapps, 'hudson.war')
+        shutil.copyfile(source, destination)
 
         self.generate_jetty(
             source='%s/templates/jetty.xml.tmpl' % TEMPLATE_DIR,
