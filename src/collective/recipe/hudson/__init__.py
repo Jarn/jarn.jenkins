@@ -110,6 +110,7 @@ class Recipe(object):
             logfile=os.path.join(logdir, 'hudson.log'),
             destination=self.buildout['buildout']['bin-directory'],
             basedir=self.part_dir,
+            datadir=datadir,
             startcmd=self.parse_java_opts())
 
         # returns installed files

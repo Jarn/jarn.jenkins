@@ -11,6 +11,8 @@ BASE_DIR = '$options.basedir'
 LOG_DIR = '$options.logfile'
 START_CMD = $options.startcmd
 
+os.environ['HUDSON_HOME'] = '$options.datadir'
+
 def start(daemonize=True):
     logfp = None
     if daemonize:
