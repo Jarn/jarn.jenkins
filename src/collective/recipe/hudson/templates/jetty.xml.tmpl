@@ -40,7 +40,7 @@
     <Call name="addConnector">
       <Arg>
           <New class="org.eclipse.jetty.server.nio.SelectChannelConnector">
-            <Set name="host"><SystemProperty name="jetty.host" /></Set>
+            <Set name="host">$options.serverhost</Set>
             <Set name="port">$options.serverport</Set>
             <Set name="maxIdleTime">50000</Set>
             <Set name="Acceptors">2</Set>

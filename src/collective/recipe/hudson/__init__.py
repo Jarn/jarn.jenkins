@@ -16,7 +16,7 @@ class Recipe(object):
         self.name, self.options, self.buildout = name, options, buildout
         self.part_dir = os.path.join(buildout['buildout']['parts-directory'], name)
 
-        options['host'] = options.get('host','localhost').strip()
+        options['host'] = options.get('host', '127.0.0.1').strip()
         options['port'] = options.get('port', '8070').strip()
         options['section-name'] = options.get('section-name', 'hudson').strip()
 
@@ -34,7 +34,7 @@ class Recipe(object):
         options['script'] = options.get('script', 'hudson').strip()
 
         # Java startup commands
-        options['java_opts'] = options.get('java_opts', '')
+        options['java-opts'] = options.get('java-opts', '')
 
     def parse_java_opts(self):
         """Parsed the java opts from `options`. """
@@ -42,10 +42,10 @@ class Recipe(object):
         _start = ['java', '-jar']
         _jar = 'start.jar'
         _opts = []
-        if not self.options['java_opts']:
+        if not self.options['java-opts']:
             cmd_opts = _start
         else:
-            _opts = self.options['java_opts'].strip().splitlines()
+            _opts = self.options['java-opts'].strip().splitlines()
             cmd_opts = _start + _opts
         cmd_opts.append(_jar)
         return cmd_opts
@@ -101,6 +101,7 @@ class Recipe(object):
         self.generate_jetty(
             source='%s/templates/jetty.xml.tmpl' % TEMPLATE_DIR,
             logdir=logdir,
+            serverhost=self.options['host'],
             serverport=self.options['port'],
             destination=self.options['jetty-destination'])
 

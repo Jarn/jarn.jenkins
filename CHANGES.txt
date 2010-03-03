@@ -4,5 +4,12 @@ Changelog
 1.0a1 - unreleased
 ------------------
 
+- Added basic package documentation.
+  [hannosch]
+
+- Updated jetty configuration to match new class names caused by the move to
+  the Eclipse project.
+  [hannosch]
+
 - Initial code, largely based on collective.recipe.solrinstance.
   [hannosch]
