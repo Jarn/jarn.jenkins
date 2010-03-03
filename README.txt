@@ -55,7 +55,7 @@ Options
 The recipe supports the following options:
 
 host
-    Name or IP address of the Jetty server, e.g. some.server.com.
+    Name or IP address of the Jetty server, e.g. ``some.server.com``.
     Defaults to ``127.0.0.1``.
 
 port
