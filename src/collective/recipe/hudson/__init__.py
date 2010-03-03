@@ -87,6 +87,7 @@ class Recipe(object):
             logdir=logdir,
             serverhost=self.options['host'],
             serverport=self.options['port'],
+            datadir=datadir,
             destination=os.path.join(self.part_dir, 'etc'))
 
         self.create_bin_scripts(
@@ -95,7 +96,6 @@ class Recipe(object):
             logfile=os.path.join(logdir, 'hudson.log'),
             destination=self.buildout['buildout']['bin-directory'],
             basedir=self.part_dir,
-            datadir=datadir,
             startcmd=self.parse_java_opts())
 
         # returns installed files

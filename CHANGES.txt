@@ -4,6 +4,10 @@ Changelog
 1.0a2 - unreleased
 ------------------
 
+- Configure the ``HUDSON_HOME`` environment variable inside the jetty.xml
+  instead of the control script.
+  [hannosch]
+
 - Simplify the example buildout a bit.
   [hannosch]
 
