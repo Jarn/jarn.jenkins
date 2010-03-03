@@ -20,12 +20,6 @@ class Recipe(object):
         options['jetty-location'] = options['jetty-location'].strip()
         options['hudson-location'] = options['hudson-location'].strip()
 
-        options['vardir'] = options.get(
-            'vardir',
-            os.path.join(buildout['buildout']['directory'], 'var', 'hudson'))
-
-        options['script'] = options.get('script', 'hudson').strip()
-
         # Java startup commands
         options['java-opts'] = options.get('java-opts', '')
 
@@ -51,17 +45,18 @@ class Recipe(object):
 
     def create_bin_scripts(self, **kwargs):
         """ Create a runner for our hudson instance """
-        if self.options['script']:
-            iw.recipe.template.Script(
-                self.buildout,
-                self.options['script'],
-                kwargs).install()
+        iw.recipe.template.Script(
+            self.buildout,
+            self.name,
+            kwargs).install()
 
     def install(self, update=False):
         """installer"""
         parts = [self.part_dir]
 
-        vardir = self.options['vardir']
+        vardir = os.path.join(
+            self.buildout['buildout']['directory'], 'var', self.name)
+
         datadir = os.path.join(vardir, 'data')
         logdir = os.path.join(vardir, 'log')
         webapps = os.path.join(self.part_dir, 'webapps')

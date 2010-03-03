@@ -41,14 +41,15 @@ A basic buildout configuration using this recipe looks like this::
 
 This will download both Jetty and Hudson and create an executable Jetty
 environment in ``parts/hudson``. It will also create a control script in
-``bin/hudson``.
+``bin/hudson``. The name of the script is the name of the section.
 
 To test the setup run ``bin/hudson fg`` and check the console output. By default
 this will run a Jetty server on port 8070. The hudson instance is accessible in
 a browser at ``http://127.0.0.1:8070/hudson/``.
 
 Hudson will write all its log files into ``var/hudson/log``. All its
-configuration included jobs and past runs will go into ``var/hudson/data``.
+configuration included jobs and past runs will go into ``var/hudson/data``. The
+directory name in ``var`` will have the name of the recipe section.
 
 
 Options
@@ -62,9 +63,6 @@ host
 
 port
     Server port. Defaults to ``8070``.
-
-script
-    The name of the control script, defaults to ``hudson``.
 
 java-opts
     Optional. Parameters to pass to the Java Virtual Machine (JVM) used to
