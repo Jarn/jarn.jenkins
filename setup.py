@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 name = "collective.recipe.hudson"
-version = '1.0a1'
+version = '1.0a2'
 
 setup(
     name = name,
