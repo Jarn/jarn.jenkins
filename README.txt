@@ -14,9 +14,6 @@ A basic buildout configuration using this recipe looks like this::
 
     [buildout]
 
-    develop =
-    eggs =
-
     parts =
         jetty-download
         hudson-download

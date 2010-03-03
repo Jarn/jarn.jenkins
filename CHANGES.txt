@@ -4,6 +4,8 @@ Changelog
 1.0a2 - unreleased
 ------------------
 
+- Simplify the example buildout a bit.
+  [hannosch]
 
 1.0a1 - 2010-03-04
 ------------------
