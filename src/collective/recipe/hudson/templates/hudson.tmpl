@@ -1,0 +1,69 @@
+from subprocess import Popen
+import sys, os
+from signal import SIGTERM
+
+if len(sys.argv) != 2:
+    print "please run with  %s start|stop|status|fg" % __file__
+    sys.exit()
+
+PID_FILE = '$options.pidfile'
+BASE_DIR = '$options.basedir'
+LOG_DIR = '$options.logfile'
+START_CMD = $options.startcmd
+
+def start(daemonize=True):
+    logfp = None
+    if daemonize:
+        logfp = file(LOG_DIR, 'a+')
+    pid = Popen(START_CMD, cwd=BASE_DIR,
+                stdout=logfp, stderr=logfp).pid
+    if not(daemonize):
+        return os.waitpid(pid, 0)
+    else:
+        f = open(PID_FILE, 'wb')
+        f.write(str(pid))
+        f.close()
+        print 'Process started with pid %s' % (pid,)
+
+def stop():
+    try:
+        f = open(PID_FILE)
+        pid = f.read().strip()
+        f.close()
+        # SIGHUP here didn't quite do the job, so using TERM instead
+        os.kill(int(pid), SIGTERM)
+        os.unlink(PID_FILE)
+        print "Process stopped successfully."
+    except (IOError, OSError):
+        print "Error occured: Process probably not stopped ..."
+
+def status():
+    try:
+        f = open(PID_FILE)
+        pid = f.read().strip()
+        f.close()
+        return pid
+    except (IOError, OSError):
+        return -1
+
+if sys.argv[1] == 'start':
+    start(True)
+    sys.exit()
+if sys.argv[1] == 'fg':
+    start(False)
+elif sys.argv[1] == 'stop':
+    stop()
+elif sys.argv[1] == 'restart':
+    if status() > 0:
+        stop()
+    start(True)
+    sys.exit()
+elif sys.argv[1] == 'status':
+    pid = status()
+    if pid > 0:
+        print "Process running with PID: ", pid
+    else:
+        print "Process not running."
+else:
+    print ("illegal option: please run with "
+           "%s start|stop|restart|status|fg" % __file__)
