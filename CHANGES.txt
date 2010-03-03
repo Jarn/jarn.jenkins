@@ -4,6 +4,9 @@ Changelog
 1.0a1 - unreleased
 ------------------
 
+- Better update handling.
+  [hannosch]
+
 - Don't configure a ContextDeployer which allows us to skip the contexts
   examples cleanup.
   [hannosch]

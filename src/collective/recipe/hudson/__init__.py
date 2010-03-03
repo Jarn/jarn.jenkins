@@ -4,9 +4,7 @@ import os
 import shutil
 
 import iw.recipe.template
-import zc.buildout
 
-TRUE_VALUES = set(['yes', 'true', '1', 'on'])
 TEMPLATE_DIR = os.path.dirname(__file__)
 
 class Recipe(object):
@@ -59,13 +57,9 @@ class Recipe(object):
                 self.options['script'],
                 kwargs).install()
 
-    def install(self):
+    def install(self, update=False):
         """installer"""
         parts = [self.part_dir]
-
-        if os.path.exists(self.part_dir):
-            raise zc.buildout.UserError(
-                'Target directory %s already exists. Please remove it.' % self.part_dir)
 
         vardir = self.options['vardir']
         datadir = os.path.join(vardir, 'data')
@@ -75,18 +69,22 @@ class Recipe(object):
             if not os.path.exists(path):
                 os.makedirs(path)
 
-        # Copy the jetty files
-        shutil.copytree(self.options['jetty-location'], self.part_dir)
+        if not update:
+            if os.path.exists(self.part_dir):
+                shutil.rmtree(self.part_dir)
 
-        # Copy the hudson files
-        war = os.path.join(self.options['hudson-location'], 'hudson.war')
-        webapps = os.path.join(self.part_dir, 'webapps')
-        shutil.copyfile(war, os.path.join(webapps, 'hudson.war'))
+            # Copy the jetty files
+            shutil.copytree(self.options['jetty-location'], self.part_dir)
 
-        # Clean up default garbage
-        test_war = os.path.join(webapps, 'test.war')
-        if os.path.exists(test_war):
-            os.remove(test_war)
+            # Copy the hudson files
+            war = os.path.join(self.options['hudson-location'], 'hudson.war')
+            webapps = os.path.join(self.part_dir, 'webapps')
+            shutil.copyfile(war, os.path.join(webapps, 'hudson.war'))
+
+            # Clean up default garbage
+            test_war = os.path.join(webapps, 'test.war')
+            if os.path.exists(test_war):
+                os.remove(test_war)
 
         self.generate_jetty(
             source='%s/templates/jetty.xml.tmpl' % TEMPLATE_DIR,
@@ -109,4 +107,4 @@ class Recipe(object):
 
     def update(self):
         """updater"""
-        pass
+        self.install(update=True)
