@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0a2 - unreleased
+1.0a2 - 2010-03-04
 ------------------
 
 - Configure the ``HUDSON_HOME`` environment variable inside the jetty.xml
