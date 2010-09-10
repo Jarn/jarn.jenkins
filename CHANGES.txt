@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0a3 - unreleased
+1.0a3 - 2010-09-10
 ------------------
 
 - Added note about Python 2.7 incompatibility. Thanks to Rob Madole for
