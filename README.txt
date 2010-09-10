@@ -7,6 +7,13 @@ This is a recipe to set up and configure Hudson_ in a Jetty_ servlet container.
 .. _Jetty : http://www.eclipse.org/jetty/
 
 
+Note
+----
+
+The recipe is currently not compatible with Python 2.7 due to an
+incompatibility in the ``iw.recipe.template`` recipe used internally.
+
+
 Basic setup
 -----------
 

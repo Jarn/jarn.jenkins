@@ -4,6 +4,10 @@ Changelog
 1.0a3 - unreleased
 ------------------
 
+- Added note about Python 2.7 incompatibility. Thanks to Rob Madole for
+  notifying me.
+  [hannosch]
+
 - Updated example to Hudson 1.375.
   [hannosch]
 
