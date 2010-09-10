@@ -27,8 +27,8 @@ A basic buildout configuration using this recipe looks like this::
 
     [hudson-download]
     recipe = gocept.download
-    url = http://hudson-ci.org/download/war/1.349/hudson.war
-    md5sum = 5572c8a9cca85ae693b7f9c47b3e67d3
+    url = http://download.hudson-labs.org/war/1.375/hudson.war
+    md5sum = c9bd2515f5b01e46eed2f740aef5e145
 
     [hudson]
     recipe = collective.recipe.hudson
