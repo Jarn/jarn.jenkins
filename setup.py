@@ -1,11 +1,9 @@
 from setuptools import setup, find_packages
 
-name = "jarn.jenkins"
-version = '1.0b1'
 
 setup(
-    name = name,
-    version = version,
+    name = 'jarn.jenkins',
+    version = '1.0b1',
     author = "Hanno Schlichting",
     author_email = "hanno@jarn.com",
     description = "Buildout recipe for installing a Jenkins instance",
@@ -17,11 +15,12 @@ setup(
     classifiers=[
       "License :: OSI Approved :: BSD License",
       "Framework :: Buildout",
+      "Framework :: Buildout :: Recipe",
       ],
     tests_require=['zope.testing'],
     packages = find_packages('src'),
     include_package_data = True,
-    package_dir = {'':'src'},
+    package_dir = {'': 'src'},
     namespace_packages = ['jarn'],
     install_requires = [
         'iw.recipe.template',
@@ -30,5 +29,5 @@ setup(
         'zc.recipe.egg',
     ],
     zip_safe=False,
-    entry_points = {'zc.buildout': ['default = %s:Recipe' % name]},
+    entry_points = {'zc.buildout': ['default = jarn.jenkins:Recipe']},
     )
