@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0b1 - unreleased
+1.0b1 - 2011-02-13
 ------------------
 
 - Renamed from `collective.recipe.hudson` to `jarn.jenkins`, following the
