@@ -1,9 +1,10 @@
 Overview
 ========
 
-This is a recipe to set up and configure Hudson_ in a Jetty_ servlet container.
+This is a recipe to set up and configure Jenkins_ in a Jetty_ servlet
+container.
 
-.. _Hudson : http://hudson-ci.org/
+.. _Jenkins : http://jenkins-ci.org/
 .. _Jetty : http://www.eclipse.org/jetty/
 
 
@@ -23,36 +24,34 @@ A basic buildout configuration using this recipe looks like this::
 
     parts =
         jetty-download
-        hudson-download
-        hudson
+        jenkins-download
+        jenkins
 
     [jetty-download]
-    recipe = gocept.download
-    url = http://download.eclipse.org/jetty/stable-7/dist/jetty-distribution-7.0.1.v20091125.tar.gz
-    md5sum = b29813029fbbf94d05e1f28d9592813f
+    recipe = hexagonit.recipe.download
+    url = http://download.eclipse.org/jetty/7.2.2.v20101205/dist/jetty-distribution-7.2.2.v20101205.tar.gz
     strip-top-level-dir = true
 
-    [hudson-download]
-    recipe = gocept.download
-    url = http://download.hudson-labs.org/war/1.375/hudson.war
-    md5sum = c9bd2515f5b01e46eed2f740aef5e145
+    [jenkins-download]
+    recipe = hexagonit.recipe.download
+    url = http://mirrors.jenkins-ci.org/war/1.397/jenkins.war
 
-    [hudson]
-    recipe = collective.recipe.hudson
+    [jenkins]
+    recipe = jarn.jenkins
     jetty-location = ${jetty-download:location}
-    hudson-location = ${hudson-download:location}
+    jenkins-location = ${jenkins-download:location}
 
 
-This will download both Jetty and Hudson and create an executable Jetty
-environment in ``parts/hudson``. It will also create a control script in
-``bin/hudson``. The name of the script is the name of the section.
+This will download both Jetty and Jenkins and create an executable Jetty
+environment in ``parts/jenkins``. It will also create a control script in
+``bin/jenkins``. The name of the script is the name of the section.
 
-To test the setup run ``bin/hudson fg`` and check the console output. By default
-this will run a Jetty server on port 8070. The hudson instance is accessible in
-a browser at ``http://127.0.0.1:8070/hudson/``.
+To test the setup run ``bin/jenkins fg`` and check the console output. By
+default this will run a Jetty server on port 8070. The jenkins instance is
+accessible in a browser at ``http://127.0.0.1:8070/jenkins/``.
 
-Hudson will write all its log files into ``var/hudson/log``. All its
-configuration including jobs and past runs will go into ``var/hudson/data``.
+Jenkins will write all its log files into ``var/jenkins/log``. All its
+configuration including jobs and past runs will go into ``var/jenkins/data``.
 The directory name in ``var`` will have the name of the recipe section.
 
 
@@ -73,7 +72,7 @@ java-opts
     run Jetty. Each option is specified on a separated line.
     If you run into memory problems it's typical to pass::
 
-        [hudson]
+        [jenkins]
         ...
         java-opts =
           -Xms512M

@@ -18,7 +18,7 @@ class Recipe(object):
         options['port'] = options.get('port', '8070').strip()
 
         options['jetty-location'] = options['jetty-location'].strip()
-        options['hudson-location'] = options['hudson-location'].strip()
+        options['jenkins-location'] = options['jenkins-location'].strip()
 
         # Java startup commands
         options['java-opts'] = options.get('java-opts', '')
@@ -44,7 +44,7 @@ class Recipe(object):
             kwargs).install()
 
     def create_bin_scripts(self, **kwargs):
-        """ Create a runner for our hudson instance """
+        """ Create a runner for our jenkins instance """
         iw.recipe.template.Script(
             self.buildout,
             self.name,
@@ -77,9 +77,9 @@ class Recipe(object):
             if os.path.exists(war):
                 os.remove(war)
 
-        # Copy the hudson file
-        source = os.path.join(self.options['hudson-location'], 'hudson.war')
-        destination = os.path.join(webapps, 'hudson.war')
+        # Copy the jenkins file
+        source = os.path.join(self.options['jenkins-location'], 'jenkins.war')
+        destination = os.path.join(webapps, 'jenkins.war')
         shutil.copyfile(source, destination)
 
         self.generate_jetty(
@@ -91,9 +91,9 @@ class Recipe(object):
             destination=os.path.join(self.part_dir, 'etc'))
 
         self.create_bin_scripts(
-            source='%s/templates/hudson.tmpl' % TEMPLATE_DIR,
-            pidfile=os.path.join(vardir, 'hudson.pid'),
-            logfile=os.path.join(logdir, 'hudson.log'),
+            source='%s/templates/jenkins.tmpl' % TEMPLATE_DIR,
+            pidfile=os.path.join(vardir, 'jenkins.pid'),
+            logfile=os.path.join(logdir, 'jenkins.log'),
             destination=self.buildout['buildout']['bin-directory'],
             basedir=self.part_dir,
             startcmd=self.parse_java_opts())

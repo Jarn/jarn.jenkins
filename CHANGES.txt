@@ -15,7 +15,7 @@ Changelog
   notifying me.
   [hannosch]
 
-- Updated example to Hudson 1.375.
+- Updated example to version 1.375.
   [hannosch]
 
 1.0a2 - 2010-03-04
