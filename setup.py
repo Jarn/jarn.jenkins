@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 name = "jarn.jenkins"
-version = '1.0a4'
+version = '1.0b1'
 
 setup(
     name = name,
