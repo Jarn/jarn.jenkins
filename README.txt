@@ -35,6 +35,7 @@ A basic buildout configuration using this recipe looks like this::
     [jenkins-download]
     recipe = hexagonit.recipe.download
     url = http://mirrors.jenkins-ci.org/war/1.397/jenkins.war
+    download-only = true
 
     [jenkins]
     recipe = jarn.jenkins
