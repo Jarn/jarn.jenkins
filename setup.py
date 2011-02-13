@@ -1,28 +1,28 @@
 from setuptools import setup, find_packages
 
-name = "collective.recipe.hudson"
+name = "jarn.jenkins"
 version = '1.0a4'
 
 setup(
     name = name,
     version = version,
     author = "Hanno Schlichting",
-    author_email = "hannosch@plone.org",
-    description = "Buildout recipe for installing a Hudson instance",
+    author_email = "hanno@jarn.com",
+    description = "Buildout recipe for installing a Jenkins instance",
     long_description=(open('README.txt').read() + '\n' +
                       open('CHANGES.txt').read()),
-    license = "ZPL 2.1",
-    keywords = "hudson buildout",
-    url='http://pypi.python.org/pypi/collective.recipe.hudson',
+    license = "BSD",
+    keywords = "jenkins buildout",
+    url='http://pypi.python.org/pypi/jarn.jenkins',
     classifiers=[
-      "License :: OSI Approved :: Zope Public License",
+      "License :: OSI Approved :: BSD License",
       "Framework :: Buildout",
       ],
     tests_require=['zope.testing'],
     packages = find_packages('src'),
     include_package_data = True,
     package_dir = {'':'src'},
-    namespace_packages = ['collective', 'collective.recipe'],
+    namespace_packages = ['jarn'],
     install_requires = [
         'iw.recipe.template',
         'setuptools',
