@@ -95,6 +95,7 @@ class Recipe(object):
             pidfile=os.path.join(vardir, 'jenkins.pid'),
             logfile=os.path.join(logdir, 'jenkins.log'),
             destination=self.buildout['buildout']['bin-directory'],
+            buildoutdir=self.buildout['buildout']['directory'],
             basedir=self.part_dir,
             startcmd=self.parse_java_opts())
 
