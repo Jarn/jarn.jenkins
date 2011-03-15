@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'jarn.jenkins',
-    version = '1.0b2',
+    version = '1.0b3',
     author = "Hanno Schlichting",
     author_email = "hanno@jarn.com",
     description = "Buildout recipe for installing a Jenkins instance",
