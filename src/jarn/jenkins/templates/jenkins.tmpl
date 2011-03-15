@@ -6,16 +6,19 @@ if len(sys.argv) != 2:
     print "please run with  %s start|stop|status|fg" % __file__
     sys.exit()
 
+BUILDOUT_DIR = '$options.buildoutdir'
 PID_FILE = '$options.pidfile'
 BASE_DIR = '$options.basedir'
 LOG_DIR = '$options.logfile'
 START_CMD = $options.startcmd
 
 def start(daemonize=True):
+    env = os.environ
+    env['BUILDOUT_HOME'] = BUILDOUT_DIR
     logfp = None
     if daemonize:
         logfp = file(LOG_DIR, 'a+')
-    pid = Popen(START_CMD, cwd=BASE_DIR,
+    pid = Popen(START_CMD, cwd=BASE_DIR, env=env,
                 stdout=logfp, stderr=logfp).pid
     if not(daemonize):
         return os.waitpid(pid, 0)
