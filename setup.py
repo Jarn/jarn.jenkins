@@ -7,7 +7,7 @@ setup(
     author = "Hanno Schlichting",
     author_email = "hanno@jarn.com",
     description = "Buildout recipe for installing a Jenkins instance",
-    long_description=(open('README.txt').read() + '\n' +
+    long_description=(open('README.rst').read() + '\n' +
                       open('CHANGES.txt').read()),
     license = "BSD",
     keywords = "jenkins buildout",
