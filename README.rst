@@ -79,3 +79,10 @@ java-opts
           -Xms512M
           -Xmx1024M
         ...
+
+
+Development
+-----------
+
+The code and issue tracker can be found at:
+https://github.com/Jarn/jarn.jenkins
